@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sensitive Twister</title>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="manifest" href="manifest.webmanifest">
+</head>
+
+<body>
+
+<h1>SENSITIVE TWISTER</h1>
+
+<div class="grid">
+
+<button class="card" data-limb="leftHand">
+  <div class="color" id="leftHand">
+    <div class="title">MANO IZQUIERDA</div>
+
+    <img class="hand" src="icons/hand-left.png" alt="Mano izquierda">
+
+    <div class="hint">Toca para girar</div>
+  </div>
+</button>
+
+<button class="card" data-limb="rightHand">
+  <div class="color" id="rightHand">
+    <div class="title">MANO DERECHA</div>
+    <img class="hand" src="icons/hand-right.png" alt="Mano derecha">
+    <div class="hint">Toca para girar</div>
+  </div>
+</button>
+
+<button class="card" data-limb="leftFoot">
+  <div class="color" id="leftFoot">
+    <div class="title">PIE IZQUIERDO</div>
+    <img class="foot" src="icons/foot-left.png" alt="Pie izquierdo">
+    <div class="hint">Toca para girar</div>
+  </div>
+</button>
+
+<button class="card" data-limb="rightFoot">
+  <div class="color" id="rightFoot">
+    <div class="title">PIE DERECHO</div>
+    <img class="foot" src="icons/foot-right.png" alt="Pie derecho">
+    <div class="hint">Toca para girar</div>
+  </div>
+</button>
+
+</div>
+
+<script src="app.js"></script>
+
+<script>
+if ("serviceWorker" in navigator) {
+navigator.serviceWorker.register("./sw.js")
+}
+</script>
+
+</body>
+</html>

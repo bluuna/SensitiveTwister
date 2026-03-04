@@ -1,0 +1,129 @@
+:root{ 
+    --gap: 32px; /* separación entre círculos */ 
+    --pad: 24px; /* margen exterior */ 
+    --border: 10px; /* grosor del borde del círculo */ 
+} 
+
+*{ box-sizing:border-box; } 
+
+html, body{ height: 100%; } 
+
+body{ 
+    margin:0; 
+    padding: var(--pad); 
+    font-family: "Baloo 2", Arial, Helvetica, sans-serif; 
+    color:#222; 
+    text-align:center; 
+    height: 100dvh; 
+    overflow: hidden; /* <- recorta el fondo si se sale */ 
+    display: flex; 
+    flex-direction: column; 
+    background-image: radial-gradient(circle at 8% 18%, #ffd6e7 30px, transparent 31px), radial-gradient(circle at 18% 72%, #d6e8ff 80px, transparent 81px), radial-gradient(circle at 30% 35%, #fff5cc 45px, transparent 46px), radial-gradient(circle at 42% 88%, #f0d6ff 120px, transparent 121px), radial-gradient(circle at 55% 52%, #d6f5d6 65px, transparent 66px), radial-gradient(circle at 68% 22%, #d6e8ff 25px, transparent 26px), radial-gradient(circle at 76% 66%, #ffd6e7 95px, transparent 96px), radial-gradient(circle at 86% 38%, #fff5cc 55px, transparent 56px), radial-gradient(circle at 92% 82%, #f0d6ff 150px, transparent 151px), radial-gradient(circle at 12% 92%, #d6f5d6 40px, transparent 41px), radial-gradient(circle at 50% 12%, #ffd6e7 70px, transparent 71px), radial-gradient(circle at 60% 90%, #d6e8ff 35px, transparent 36px), radial-gradient(circle at 70% 55%, #fff5cc 20px, transparent 21px); 
+} 
+
+h1{ 
+    margin: 0 0 14px; 
+    font-size: clamp(34px, 5.2vw, 76px); 
+    font-weight: 800; 
+    line-height: 1; 
+    flex: 0 0 auto; 
+} 
+
+.grid{ 
+    width: min(1100px, 100%); 
+    margin: 0 auto; 
+    flex: 1 1 auto; 
+    min-height: 0; /* CLAVE */ 
+    min-width: 0; /* CLAVE */ 
+    display: grid; 
+    grid-template-columns: repeat(2, minmax(0, 1fr)); 
+    grid-template-rows: repeat(2, minmax(0, 1fr)); 
+    gap: var(--gap); place-items: center; /* centra dentro de cada celda */ 
+} 
+
+/* Círculos grandes */ 
+.card{ 
+    border: none; 
+    padding: 0; 
+    margin: 0; 
+    background: transparent; 
+    cursor: pointer; 
+    width: 100%; 
+    height: 100%; 
+    display: grid; 
+    place-items: center; 
+    font-family: inherit; 
+} 
+
+.card .color{
+  /* tarjeta grande sin salirse */
+  width: min(100%, 52vh);
+  height: min(100%, 34vh);
+
+  border-radius: 28px;        /* esquinas redondeadas */
+  background: #27637495;
+  border: var(--border) solid rgba(0,0,0,0.08);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.10);
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap: 12px;
+
+  transition: transform 120ms ease, background-color 120ms ease;
+}
+
+.card .color:hover{ 
+    transform: scale(1.01); 
+    background-color: #4795aa95; 
+} 
+
+.hand{
+  width: min(16vh,140px);
+  height: auto;
+  display:block;
+
+  /* hace que se vea “pegatina” */
+  filter: drop-shadow(0 10px 14px rgba(0,0,0,0.15));
+}
+
+.foot{
+  height: auto;
+  display:block;
+
+  /* hace que se vea “pegatina” */
+  filter: drop-shadow(0 10px 14px rgba(0,0,0,0.15));
+  width: min(12vh,100px);
+}
+
+/* Textos dentro del círculo */ 
+.title{ 
+    font-weight: 800; 
+    font-size: clamp(18px, 2.5vw, 32px); 
+    margin-bottom: 10px; 
+    color: white; 
+    font-family: inherit; 
+} 
+
+.hint{ 
+    font-size: clamp(12px, 1.6vw, 18px); 
+    color: rgba(255, 255, 255, 0.55); 
+    font-family: inherit; 
+} 
+
+/* Feedback al tocar */ 
+.card:active .color{ transform: scale(0.98); } 
+
+/* Mejor en pantallas estrechas: 1 columna */ 
+@media (max-width: 700px){ 
+    .grid{ 
+        grid-template-columns: 1fr; 
+        height: auto; max-height: none; 
+    } 
+    
+    .card{ 
+        max-width: 520px; 
+        aspect-ratio: 1 / 1;
+    } 
+}
