@@ -6,6 +6,9 @@ const colors = [
   "#181717"  // negro
 ];
 
+const clickSound = new Audio("sounds/pop.flac");
+clickSound.preload = "auto";
+
 function randomColor(){
 return colors[Math.floor(Math.random()*colors.length)]
 }
@@ -32,12 +35,13 @@ element.style.background=randomColor()
 }
 
 document.querySelectorAll(".card").forEach(card=>{
+  card.addEventListener("click",()=>{
 
-card.addEventListener("click",()=>{
+    clickSound.currentTime = 0;
+    clickSound.volume = 0.4;
+    clickSound.play();
 
-let limb = card.dataset.limb
-spin(limb)
+    spin(card.dataset.limb);
 
-})
-
+  })
 })
