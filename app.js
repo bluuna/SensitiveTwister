@@ -1,16 +1,36 @@
-const colors = [
-{value:"#2196f3", name:"azul"},
-{value:"#d6c533", name:"amarillo"},
-{value:"#fe82ab", name:"rosa"},
-{value:"#5cba5f", name:"verde"},
-{value:"#181717", name:"negro"}
-];
+const trimesterColors = {
+  1: [
+    {value:"#d6c533", name:"amarillo"},
+    {value:"#5cba5f", name:"verde"},
+    {value:"#2196f3", name:"azul"},
+    {value:"#181717", name:"negro"}
+  ],
+  2: [
+    {value:"#d6c533", name:"amarillo"},
+    {value:"#5cba5f", name:"verde"},
+    {value:"#2196f3", name:"azul"},
+    {value:"#181717", name:"negro"},
+    {value:"#fe82ab", name:"rosa"}
+  ],
+  3: [
+    {value:"#d6c533", name:"amarillo"},
+    {value:"#5cba5f", name:"verde"},
+    {value:"#2196f3", name:"azul"},
+    {value:"#181717", name:"negro"},
+    {value:"#fe82ab", name:"rosa"},
+    {value:"#ff9800", name:"naranja"},
+    {value:"#9c27b0", name:"morado"}
+  ]
+};
+
+let currentTrimester = 1;
 
 const clickSound = new Audio("sounds/pop.flac");
 clickSound.preload = "auto";
 
 function randomColor(){
-  return colors[Math.floor(Math.random()*colors.length)]
+  const list = trimesterColors[currentTrimester];
+  return list[Math.floor(Math.random()*list.length)];
 }
 
 function speak(text){
@@ -60,3 +80,17 @@ document.querySelectorAll(".card").forEach(card=>{
 
   })
 })
+
+document.querySelectorAll(".selector button").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+
+    currentTrimester = btn.dataset.trim;
+
+    // UI activa
+    document.querySelectorAll(".selector button").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+
+  });
+});
+
+document.querySelector('[data-trim="1"]').classList.add("active");
